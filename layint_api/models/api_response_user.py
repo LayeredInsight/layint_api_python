@@ -43,7 +43,7 @@ class APIResponseUser(object):
     }
 
     attribute_map = {
-        'id': 'Id',
+        'id': 'ID',
         'username': 'Username',
         'first_name': 'FirstName',
         'last_name': 'LastName',

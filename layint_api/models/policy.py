@@ -43,16 +43,17 @@ class Policy(object):
         'suspend': 'bool',
         'limits': 'Limit',
         'rules': 'list[PolicyRule]',
+        'ignored_syscalls': 'list[str]',
         'date_created': 'str',
         'date_updated': 'str'
     }
 
     attribute_map = {
-        'id': 'Id',
+        'id': 'ID',
         'name': 'Name',
         'description': 'Description',
-        'user_id': 'User_Id',
-        'group_id': 'Group_Id',
+        'user_id': 'UserID',
+        'group_id': 'GroupID',
         'schema_version': 'SchemaVersion',
         'default_file_action': 'DefaultFileAction',
         'default_network_action': 'DefaultNetworkAction',
@@ -60,11 +61,12 @@ class Policy(object):
         'suspend': 'Suspend',
         'limits': 'Limits',
         'rules': 'Rules',
+        'ignored_syscalls': 'IgnoredSyscalls',
         'date_created': 'DateCreated',
         'date_updated': 'DateUpdated'
     }
 
-    def __init__(self, id=None, name=None, description=None, user_id=None, group_id=None, schema_version=None, default_file_action=None, default_network_action=None, default_program_action=None, suspend=False, limits=None, rules=None, date_created=None, date_updated=None):
+    def __init__(self, id=None, name=None, description=None, user_id=None, group_id=None, schema_version=None, default_file_action=None, default_network_action=None, default_program_action=None, suspend=False, limits=None, rules=None, ignored_syscalls=None, date_created=None, date_updated=None):
         """
         Policy - a model defined in Swagger
         """
@@ -81,6 +83,7 @@ class Policy(object):
         self._suspend = None
         self._limits = None
         self._rules = None
+        self._ignored_syscalls = None
         self._date_created = None
         self._date_updated = None
 
@@ -108,6 +111,8 @@ class Policy(object):
           self.limits = limits
         if rules is not None:
           self.rules = rules
+        if ignored_syscalls is not None:
+          self.ignored_syscalls = ignored_syscalls
         if date_created is not None:
           self.date_created = date_created
         if date_updated is not None:
@@ -404,6 +409,29 @@ class Policy(object):
         """
 
         self._rules = rules
+
+    @property
+    def ignored_syscalls(self):
+        """
+        Gets the ignored_syscalls of this Policy.
+        System calls that this Policy must ignore.  Supersedes any rules.
+
+        :return: The ignored_syscalls of this Policy.
+        :rtype: list[str]
+        """
+        return self._ignored_syscalls
+
+    @ignored_syscalls.setter
+    def ignored_syscalls(self, ignored_syscalls):
+        """
+        Sets the ignored_syscalls of this Policy.
+        System calls that this Policy must ignore.  Supersedes any rules.
+
+        :param ignored_syscalls: The ignored_syscalls of this Policy.
+        :type: list[str]
+        """
+
+        self._ignored_syscalls = ignored_syscalls
 
     @property
     def date_created(self):

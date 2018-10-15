@@ -16,6 +16,8 @@ from __future__ import absolute_import
 # import models into model package
 from .api_response_user import APIResponseUser
 from .alert_events import AlertEvents
+from .alerts import Alerts
+from .alerts_messages import AlertsMessages
 from .bad_request import BadRequest
 from .behavioral_status import BehavioralStatus
 from .clair_data import ClairData
@@ -58,6 +60,7 @@ from .image import Image
 from .image_log import ImageLog
 from .image_logs import ImageLogs
 from .image_ref import ImageRef
+from .image_update_request import ImageUpdateRequest
 from .images import Images
 from .inline_response_200 import InlineResponse200
 from .inline_response_200_1 import InlineResponse2001
@@ -74,6 +77,8 @@ from .license_runtime import LicenseRuntime
 from .license_scan import LicenseScan
 from .limit import Limit
 from .login import Login
+from .network_map import NetworkMap
+from .network_map_inner import NetworkMapInner
 from .notification import Notification
 from .notifications import Notifications
 from .package_search_data import PackageSearchData

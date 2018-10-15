@@ -33,8 +33,8 @@ class Registry(object):
     swagger_types = {
         'id': 'str',
         'name': 'str',
-        'user_id': 'int',
-        'group_id': 'int',
+        'user_id': 'str',
+        'group_id': 'str',
         'url': 'str',
         'type': 'str',
         'username': 'str',
@@ -48,8 +48,8 @@ class Registry(object):
     attribute_map = {
         'id': 'ID',
         'name': 'Name',
-        'user_id': 'UserId',
-        'group_id': 'GroupId',
+        'user_id': 'UserID',
+        'group_id': 'GroupID',
         'url': 'URL',
         'type': 'Type',
         'username': 'Username',
@@ -60,7 +60,7 @@ class Registry(object):
         'insecure_registry': 'InsecureRegistry'
     }
 
-    def __init__(self, id=None, name=None, user_id=None, group_id=None, url=None, type=None, username=None, password=None, access_token=None, certificate=None, tls_verify=False, insecure_registry=False):
+    def __init__(self, id=None, name=None, user_id=None, group_id=None, url=None, type=None, username=None, password=None, access_token=None, certificate=None, tls_verify=True, insecure_registry=False):
         """
         Registry - a model defined in Swagger
         """
@@ -156,7 +156,7 @@ class Registry(object):
         User ID of owner of the image
 
         :return: The user_id of this Registry.
-        :rtype: int
+        :rtype: str
         """
         return self._user_id
 
@@ -167,7 +167,7 @@ class Registry(object):
         User ID of owner of the image
 
         :param user_id: The user_id of this Registry.
-        :type: int
+        :type: str
         """
 
         self._user_id = user_id
@@ -179,7 +179,7 @@ class Registry(object):
         Group ID of owner of the image
 
         :return: The group_id of this Registry.
-        :rtype: int
+        :rtype: str
         """
         return self._group_id
 
@@ -190,7 +190,7 @@ class Registry(object):
         Group ID of owner of the image
 
         :param group_id: The group_id of this Registry.
-        :type: int
+        :type: str
         """
 
         self._group_id = group_id

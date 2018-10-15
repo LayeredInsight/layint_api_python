@@ -33,11 +33,11 @@ class Config(object):
     swagger_types = {
         'id': 'str',
         'name': 'str',
-        'user_id': 'int',
-        'group_id': 'int',
+        'user_id': 'str',
+        'group_id': 'str',
         'mq': 'str',
         'policy_id': 'str',
-        'logging': 'bool',
+        'log_mode': 'int',
         'sniffing': 'bool',
         'date_created': 'str',
         'date_updated': 'str',
@@ -45,20 +45,20 @@ class Config(object):
     }
 
     attribute_map = {
-        'id': 'Id',
+        'id': 'ID',
         'name': 'Name',
-        'user_id': 'UserId',
-        'group_id': 'GroupId',
+        'user_id': 'UserID',
+        'group_id': 'GroupID',
         'mq': 'MQ',
         'policy_id': 'PolicyID',
-        'logging': 'Logging',
+        'log_mode': 'LogMode',
         'sniffing': 'Sniffing',
         'date_created': 'DateCreated',
         'date_updated': 'DateUpdated',
         'default': 'Default'
     }
 
-    def __init__(self, id=None, name=None, user_id=None, group_id=None, mq=None, policy_id=None, logging=False, sniffing=False, date_created=None, date_updated=None, default=False):
+    def __init__(self, id=None, name=None, user_id=None, group_id=None, mq=None, policy_id=None, log_mode=None, sniffing=False, date_created=None, date_updated=None, default=False):
         """
         Config - a model defined in Swagger
         """
@@ -69,7 +69,7 @@ class Config(object):
         self._group_id = None
         self._mq = None
         self._policy_id = None
-        self._logging = None
+        self._log_mode = None
         self._sniffing = None
         self._date_created = None
         self._date_updated = None
@@ -87,8 +87,8 @@ class Config(object):
           self.mq = mq
         if policy_id is not None:
           self.policy_id = policy_id
-        if logging is not None:
-          self.logging = logging
+        if log_mode is not None:
+          self.log_mode = log_mode
         if sniffing is not None:
           self.sniffing = sniffing
         if date_created is not None:
@@ -151,7 +151,7 @@ class Config(object):
         User ID of owner of the container
 
         :return: The user_id of this Config.
-        :rtype: int
+        :rtype: str
         """
         return self._user_id
 
@@ -162,7 +162,7 @@ class Config(object):
         User ID of owner of the container
 
         :param user_id: The user_id of this Config.
-        :type: int
+        :type: str
         """
 
         self._user_id = user_id
@@ -174,7 +174,7 @@ class Config(object):
         Group ID of owner of the container
 
         :return: The group_id of this Config.
-        :rtype: int
+        :rtype: str
         """
         return self._group_id
 
@@ -185,7 +185,7 @@ class Config(object):
         Group ID of owner of the container
 
         :param group_id: The group_id of this Config.
-        :type: int
+        :type: str
         """
 
         self._group_id = group_id
@@ -237,27 +237,27 @@ class Config(object):
         self._policy_id = policy_id
 
     @property
-    def logging(self):
+    def log_mode(self):
         """
-        Gets the logging of this Config.
-        When true, specifies that behavioral logging should be sent to servers.
+        Gets the log_mode of this Config.
+        Specifies the mode for LI agent(s) to send logs. An integer in decimal representation containing LogMode bit flags to control generated agent configuration.  | Log Mode        | Value | Value Hexadecimal | |-----------------|-------|-------------------| | None            | 0     | 0x0| | PolicyAlert     | 1     | 0x1| | PolicyDeny      | 2     | 0x2| | PolicyAlertDeny | 3     | 0x3 (PolicyAlert \\| PolicyDeny)| | PolicyAllow     | 4     | 0x4| | PolicyAll       | 7     | 0x7 (PolicyAlert \\| PolicyDeny \\| PolicyAllow)| | Behavior        | 8     | 0x8   | | All             | 15    | 0xf (PolicyAll \\| Behavior)| 
 
-        :return: The logging of this Config.
-        :rtype: bool
+        :return: The log_mode of this Config.
+        :rtype: int
         """
-        return self._logging
+        return self._log_mode
 
-    @logging.setter
-    def logging(self, logging):
+    @log_mode.setter
+    def log_mode(self, log_mode):
         """
-        Sets the logging of this Config.
-        When true, specifies that behavioral logging should be sent to servers.
+        Sets the log_mode of this Config.
+        Specifies the mode for LI agent(s) to send logs. An integer in decimal representation containing LogMode bit flags to control generated agent configuration.  | Log Mode        | Value | Value Hexadecimal | |-----------------|-------|-------------------| | None            | 0     | 0x0| | PolicyAlert     | 1     | 0x1| | PolicyDeny      | 2     | 0x2| | PolicyAlertDeny | 3     | 0x3 (PolicyAlert \\| PolicyDeny)| | PolicyAllow     | 4     | 0x4| | PolicyAll       | 7     | 0x7 (PolicyAlert \\| PolicyDeny \\| PolicyAllow)| | Behavior        | 8     | 0x8   | | All             | 15    | 0xf (PolicyAll \\| Behavior)| 
 
-        :param logging: The logging of this Config.
-        :type: bool
+        :param log_mode: The log_mode of this Config.
+        :type: int
         """
 
-        self._logging = logging
+        self._log_mode = log_mode
 
     @property
     def sniffing(self):

@@ -95,6 +95,14 @@ class TestContainerApi(unittest.TestCase):
         """
         pass
 
+    def test_get_agent_config(self):
+        """
+        Test case for get_agent_config
+
+        Get the specified container configuration for the LI agent. The configuration consists of agent settings and policy rules.
+        """
+        pass
+
     def test_get_container_dossier(self):
         """
         Test case for get_container_dossier
@@ -172,6 +180,14 @@ class TestContainerApi(unittest.TestCase):
         Test case for post_behavioral_logging
 
         Toggle behavioral logging on/off
+        """
+        pass
+
+    def test_seccomp(self):
+        """
+        Test case for seccomp
+
+        Get a Seccomp profile based on the list of system calls a container has made.
         """
         pass
 

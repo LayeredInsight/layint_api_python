@@ -31,8 +31,8 @@ class ScanData(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'sid': 'str',
-        'parent_sid': 'str',
+        'id': 'str',
+        'parent_id': 'str',
         'user_id': 'str',
         'uri': 'str',
         'image_id': 'str',
@@ -44,11 +44,11 @@ class ScanData(object):
     }
 
     attribute_map = {
-        'sid': 'Sid',
-        'parent_sid': 'ParentSid',
+        'id': 'ID',
+        'parent_id': 'ParentID',
         'user_id': 'UserID',
-        'uri': 'Uri',
-        'image_id': 'ImageId',
+        'uri': 'URI',
+        'image_id': 'ImageID',
         'date_created': 'DateCreated',
         'date_updated': 'DateUpdated',
         'status': 'Status',
@@ -56,13 +56,13 @@ class ScanData(object):
         'clair': 'Clair'
     }
 
-    def __init__(self, sid=None, parent_sid=None, user_id=None, uri=None, image_id=None, date_created=None, date_updated=None, status=None, events=None, clair=None):
+    def __init__(self, id=None, parent_id=None, user_id=None, uri=None, image_id=None, date_created=None, date_updated=None, status=None, events=None, clair=None):
         """
         ScanData - a model defined in Swagger
         """
 
-        self._sid = None
-        self._parent_sid = None
+        self._id = None
+        self._parent_id = None
         self._user_id = None
         self._uri = None
         self._image_id = None
@@ -72,10 +72,10 @@ class ScanData(object):
         self._events = None
         self._clair = None
 
-        if sid is not None:
-          self.sid = sid
-        if parent_sid is not None:
-          self.parent_sid = parent_sid
+        if id is not None:
+          self.id = id
+        if parent_id is not None:
+          self.parent_id = parent_id
         if user_id is not None:
           self.user_id = user_id
         if uri is not None:
@@ -94,50 +94,50 @@ class ScanData(object):
           self.clair = clair
 
     @property
-    def sid(self):
+    def id(self):
         """
-        Gets the sid of this ScanData.
+        Gets the id of this ScanData.
         Internal ID of this scan
 
-        :return: The sid of this ScanData.
+        :return: The id of this ScanData.
         :rtype: str
         """
-        return self._sid
+        return self._id
 
-    @sid.setter
-    def sid(self, sid):
+    @id.setter
+    def id(self, id):
         """
-        Sets the sid of this ScanData.
+        Sets the id of this ScanData.
         Internal ID of this scan
 
-        :param sid: The sid of this ScanData.
+        :param id: The id of this ScanData.
         :type: str
         """
 
-        self._sid = sid
+        self._id = id
 
     @property
-    def parent_sid(self):
+    def parent_id(self):
         """
-        Gets the parent_sid of this ScanData.
+        Gets the parent_id of this ScanData.
         Internal ID of image that was scanned
 
-        :return: The parent_sid of this ScanData.
+        :return: The parent_id of this ScanData.
         :rtype: str
         """
-        return self._parent_sid
+        return self._parent_id
 
-    @parent_sid.setter
-    def parent_sid(self, parent_sid):
+    @parent_id.setter
+    def parent_id(self, parent_id):
         """
-        Sets the parent_sid of this ScanData.
+        Sets the parent_id of this ScanData.
         Internal ID of image that was scanned
 
-        :param parent_sid: The parent_sid of this ScanData.
+        :param parent_id: The parent_id of this ScanData.
         :type: str
         """
 
-        self._parent_sid = parent_sid
+        self._parent_id = parent_id
 
     @property
     def user_id(self):

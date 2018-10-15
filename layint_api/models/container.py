@@ -33,8 +33,8 @@ class Container(object):
     swagger_types = {
         'id': 'str',
         'name': 'str',
-        'user_id': 'int',
-        'group_id': 'int',
+        'user_id': 'str',
+        'group_id': 'str',
         'date_created': 'str',
         'date_updated': 'str',
         'image_id': 'str',
@@ -46,14 +46,14 @@ class Container(object):
     }
 
     attribute_map = {
-        'id': 'Id',
+        'id': 'ID',
         'name': 'Name',
-        'user_id': 'UserId',
-        'group_id': 'GroupId',
+        'user_id': 'UserID',
+        'group_id': 'GroupID',
         'date_created': 'DateCreated',
         'date_updated': 'DateUpdated',
-        'image_id': 'ImageId',
-        'config_id': 'ConfigId',
+        'image_id': 'ImageID',
+        'config_id': 'ConfigID',
         'status': 'Status',
         'location': 'Location',
         'application': 'Application',
@@ -156,7 +156,7 @@ class Container(object):
         User ID of owner of the container
 
         :return: The user_id of this Container.
-        :rtype: int
+        :rtype: str
         """
         return self._user_id
 
@@ -167,7 +167,7 @@ class Container(object):
         User ID of owner of the container
 
         :param user_id: The user_id of this Container.
-        :type: int
+        :type: str
         """
 
         self._user_id = user_id
@@ -179,7 +179,7 @@ class Container(object):
         Group ID of owner of the container
 
         :return: The group_id of this Container.
-        :rtype: int
+        :rtype: str
         """
         return self._group_id
 
@@ -190,7 +190,7 @@ class Container(object):
         Group ID of owner of the container
 
         :param group_id: The group_id of this Container.
-        :type: int
+        :type: str
         """
 
         self._group_id = group_id

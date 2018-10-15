@@ -6,6 +6,7 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**add_policy**](PolicyApi.md#add_policy) | **POST** /Policies | Create new security policy
 [**delete_policy**](PolicyApi.md#delete_policy) | **DELETE** /Policies/{policyID} | Delete policy
+[**generate_seccomp_for_policy**](PolicyApi.md#generate_seccomp_for_policy) | **GET** /Policies/{policyID}/Seccomp | Get a Seccomp policy derivied from a LI policy
 [**get_containers_running_policy**](PolicyApi.md#get_containers_running_policy) | **GET** /Policies/{policyID}/Containers | Get containers running a specific policy
 [**get_policies**](PolicyApi.md#get_policies) | **GET** /Policies | Get all policies
 [**get_policy**](PolicyApi.md#get_policy) | **GET** /Policies/{policyID} | Get specific policy
@@ -101,6 +102,58 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **policy_id** | **str**| hexadecimal ID of policy to delete | 
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[ApiKey](../README.md#ApiKey)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: Not defined
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **generate_seccomp_for_policy**
+> generate_seccomp_for_policy(policy_id, li_agent=li_agent)
+
+Get a Seccomp policy derivied from a LI policy
+
+### Example 
+```python
+from __future__ import print_function
+import time
+import layint_api
+from layint_api.rest import ApiException
+from pprint import pprint
+
+# Configure API key authorization: ApiKey
+layint_api.configuration.api_key['Authorization'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# layint_api.configuration.api_key_prefix['Authorization'] = 'Bearer'
+
+# create an instance of the API class
+api_instance = layint_api.PolicyApi()
+policy_id = 'policy_id_example' # str | hexadecimal ID of policy
+li_agent = false # bool | If true, the policy will include whitelisted syscalls for the LI agent. (optional) (default to false)
+
+try: 
+    # Get a Seccomp policy derivied from a LI policy
+    api_instance.generate_seccomp_for_policy(policy_id, li_agent=li_agent)
+except ApiException as e:
+    print("Exception when calling PolicyApi->generate_seccomp_for_policy: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **policy_id** | **str**| hexadecimal ID of policy | 
+ **li_agent** | **bool**| If true, the policy will include whitelisted syscalls for the LI agent. | [optional] [default to false]
 
 ### Return type
 

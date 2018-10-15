@@ -1,6 +1,7 @@
 from __future__ import absolute_import
 
 # import apis into api package
+from .alerts_api import AlertsApi
 from .analytics_api import AnalyticsApi
 from .authentication_api import AuthenticationApi
 from .clair_api import ClairApi
@@ -13,6 +14,7 @@ from .images_api import ImagesApi
 from .license_api import LicenseApi
 from .log_api import LogApi
 from .monitor_api import MonitorApi
+from .network_api import NetworkApi
 from .notification_api import NotificationApi
 from .policy_api import PolicyApi
 from .registry_api import RegistryApi

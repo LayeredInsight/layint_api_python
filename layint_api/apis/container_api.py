@@ -877,6 +877,116 @@ class ContainerApi(object):
                                         _request_timeout=params.get('_request_timeout'),
                                         collection_formats=collection_formats)
 
+    def get_agent_config(self, container_id, **kwargs):
+        """
+        Get the specified container configuration for the LI agent. The configuration consists of agent settings and policy rules.
+        Provides the compiled LI agent configuration for the specified container.
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please define a `callback` function
+        to be invoked when receiving the response.
+        >>> def callback_function(response):
+        >>>     pprint(response)
+        >>>
+        >>> thread = api.get_agent_config(container_id, callback=callback_function)
+
+        :param callback function: The callback function
+            for asynchronous request. (optional)
+        :param str container_id: hexadecimal ID of container to get agent configuration (required)
+        :param int log_mode: integer in decimal representation containing LogMode bit flags to set in the  generated agent configuration.  | Log Mode        | Value | Value Hexadecimal | |-----------------|-------|-------------------| | None            | 0     | 0x0| | PolicyAlert     | 1     | 0x1| | PolicyDeny      | 2     | 0x2| | PolicyAlertDeny | 3     | 0x3 (PolicyAlert \\| PolicyDeny)| | PolicyAllow     | 4     | 0x4| | PolicyAll       | 7     | 0x7 (PolicyAlert \\| PolicyDeny \\| PolicyAllow)| | Behavior        | 8     | 0x8   | | All             | 15    | 0xf (PolicyAll \\| Behavior)| 
+        :param str arch: architecture to use for the generated agent configuration policy rules
+        :param bool raw: response format option for raw format
+        :return: str
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+        kwargs['_return_http_data_only'] = True
+        if kwargs.get('callback'):
+            return self.get_agent_config_with_http_info(container_id, **kwargs)
+        else:
+            (data) = self.get_agent_config_with_http_info(container_id, **kwargs)
+            return data
+
+    def get_agent_config_with_http_info(self, container_id, **kwargs):
+        """
+        Get the specified container configuration for the LI agent. The configuration consists of agent settings and policy rules.
+        Provides the compiled LI agent configuration for the specified container.
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please define a `callback` function
+        to be invoked when receiving the response.
+        >>> def callback_function(response):
+        >>>     pprint(response)
+        >>>
+        >>> thread = api.get_agent_config_with_http_info(container_id, callback=callback_function)
+
+        :param callback function: The callback function
+            for asynchronous request. (optional)
+        :param str container_id: hexadecimal ID of container to get agent configuration (required)
+        :param int log_mode: integer in decimal representation containing LogMode bit flags to set in the  generated agent configuration.  | Log Mode        | Value | Value Hexadecimal | |-----------------|-------|-------------------| | None            | 0     | 0x0| | PolicyAlert     | 1     | 0x1| | PolicyDeny      | 2     | 0x2| | PolicyAlertDeny | 3     | 0x3 (PolicyAlert \\| PolicyDeny)| | PolicyAllow     | 4     | 0x4| | PolicyAll       | 7     | 0x7 (PolicyAlert \\| PolicyDeny \\| PolicyAllow)| | Behavior        | 8     | 0x8   | | All             | 15    | 0xf (PolicyAll \\| Behavior)| 
+        :param str arch: architecture to use for the generated agent configuration policy rules
+        :param bool raw: response format option for raw format
+        :return: str
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+
+        all_params = ['container_id', 'log_mode', 'arch', 'raw']
+        all_params.append('callback')
+        all_params.append('_return_http_data_only')
+        all_params.append('_preload_content')
+        all_params.append('_request_timeout')
+
+        params = locals()
+        for key, val in iteritems(params['kwargs']):
+            if key not in all_params:
+                raise TypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method get_agent_config" % key
+                )
+            params[key] = val
+        del params['kwargs']
+        # verify the required parameter 'container_id' is set
+        if ('container_id' not in params) or (params['container_id'] is None):
+            raise ValueError("Missing the required parameter `container_id` when calling `get_agent_config`")
+
+
+        collection_formats = {}
+
+        path_params = {}
+        if 'container_id' in params:
+            path_params['containerID'] = params['container_id']
+
+        query_params = []
+        if 'log_mode' in params:
+            query_params.append(('logMode', params['log_mode']))
+        if 'arch' in params:
+            query_params.append(('arch', params['arch']))
+        if 'raw' in params:
+            query_params.append(('raw', params['raw']))
+
+        header_params = {}
+
+        form_params = []
+        local_var_files = {}
+
+        body_params = None
+        # Authentication setting
+        auth_settings = ['ApiKey']
+
+        return self.api_client.call_api('/Containers/{containerID}/AgentConfig', 'GET',
+                                        path_params,
+                                        query_params,
+                                        header_params,
+                                        body=body_params,
+                                        post_params=form_params,
+                                        files=local_var_files,
+                                        response_type='str',
+                                        auth_settings=auth_settings,
+                                        callback=params.get('callback'),
+                                        _return_http_data_only=params.get('_return_http_data_only'),
+                                        _preload_content=params.get('_preload_content', True),
+                                        _request_timeout=params.get('_request_timeout'),
+                                        collection_formats=collection_formats)
+
     def get_container_dossier(self, container_id, **kwargs):
         """
         Gets dossier for container
@@ -1380,6 +1490,7 @@ class ContainerApi(object):
             for asynchronous request. (optional)
         :param str container_id: hexadecimal ID of container to get metrics from (required)
         :param str starting_time: Time from when histograph should start (required)
+        :param str ending_time: Time from when histograph should end
         :return: LevelSyscallCategoryMetrics
                  If the method is called asynchronously,
                  returns the request thread.
@@ -1406,12 +1517,13 @@ class ContainerApi(object):
             for asynchronous request. (optional)
         :param str container_id: hexadecimal ID of container to get metrics from (required)
         :param str starting_time: Time from when histograph should start (required)
+        :param str ending_time: Time from when histograph should end
         :return: LevelSyscallCategoryMetrics
                  If the method is called asynchronously,
                  returns the request thread.
         """
 
-        all_params = ['container_id', 'starting_time']
+        all_params = ['container_id', 'starting_time', 'ending_time']
         all_params.append('callback')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
@@ -1443,6 +1555,8 @@ class ContainerApi(object):
         query_params = []
         if 'starting_time' in params:
             query_params.append(('StartingTime', params['starting_time']))
+        if 'ending_time' in params:
+            query_params.append(('EndingTime', params['ending_time']))
 
         header_params = {}
 
@@ -1856,6 +1970,114 @@ class ContainerApi(object):
                                         post_params=form_params,
                                         files=local_var_files,
                                         response_type='BehavioralStatus',
+                                        auth_settings=auth_settings,
+                                        callback=params.get('callback'),
+                                        _return_http_data_only=params.get('_return_http_data_only'),
+                                        _preload_content=params.get('_preload_content', True),
+                                        _request_timeout=params.get('_request_timeout'),
+                                        collection_formats=collection_formats)
+
+    def seccomp(self, container_id, **kwargs):
+        """
+        Get a Seccomp profile based on the list of system calls a container has made.
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please define a `callback` function
+        to be invoked when receiving the response.
+        >>> def callback_function(response):
+        >>>     pprint(response)
+        >>>
+        >>> thread = api.seccomp(container_id, callback=callback_function)
+
+        :param callback function: The callback function
+            for asynchronous request. (optional)
+        :param str container_id: hexadecimal ID of container to get system call from (required)
+        :param str starting_time: Date from when to get data
+        :param str system_call: Get a systemcall by number
+        :param str language: Get calls for a given language
+        :return: None
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+        kwargs['_return_http_data_only'] = True
+        if kwargs.get('callback'):
+            return self.seccomp_with_http_info(container_id, **kwargs)
+        else:
+            (data) = self.seccomp_with_http_info(container_id, **kwargs)
+            return data
+
+    def seccomp_with_http_info(self, container_id, **kwargs):
+        """
+        Get a Seccomp profile based on the list of system calls a container has made.
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please define a `callback` function
+        to be invoked when receiving the response.
+        >>> def callback_function(response):
+        >>>     pprint(response)
+        >>>
+        >>> thread = api.seccomp_with_http_info(container_id, callback=callback_function)
+
+        :param callback function: The callback function
+            for asynchronous request. (optional)
+        :param str container_id: hexadecimal ID of container to get system call from (required)
+        :param str starting_time: Date from when to get data
+        :param str system_call: Get a systemcall by number
+        :param str language: Get calls for a given language
+        :return: None
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+
+        all_params = ['container_id', 'starting_time', 'system_call', 'language']
+        all_params.append('callback')
+        all_params.append('_return_http_data_only')
+        all_params.append('_preload_content')
+        all_params.append('_request_timeout')
+
+        params = locals()
+        for key, val in iteritems(params['kwargs']):
+            if key not in all_params:
+                raise TypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method seccomp" % key
+                )
+            params[key] = val
+        del params['kwargs']
+        # verify the required parameter 'container_id' is set
+        if ('container_id' not in params) or (params['container_id'] is None):
+            raise ValueError("Missing the required parameter `container_id` when calling `seccomp`")
+
+
+        collection_formats = {}
+
+        path_params = {}
+        if 'container_id' in params:
+            path_params['containerID'] = params['container_id']
+
+        query_params = []
+        if 'starting_time' in params:
+            query_params.append(('StartingTime', params['starting_time']))
+        if 'system_call' in params:
+            query_params.append(('SystemCall', params['system_call']))
+        if 'language' in params:
+            query_params.append(('Language', params['language']))
+
+        header_params = {}
+
+        form_params = []
+        local_var_files = {}
+
+        body_params = None
+        # Authentication setting
+        auth_settings = ['ApiKey']
+
+        return self.api_client.call_api('/Containers/{containerID}/Seccomp', 'GET',
+                                        path_params,
+                                        query_params,
+                                        header_params,
+                                        body=body_params,
+                                        post_params=form_params,
+                                        files=local_var_files,
+                                        response_type=None,
                                         auth_settings=auth_settings,
                                         callback=params.get('callback'),
                                         _return_http_data_only=params.get('_return_http_data_only'),

@@ -40,7 +40,7 @@ class Notification(object):
     }
 
     attribute_map = {
-        'id': 'Id',
+        'id': 'ID',
         'name': 'Name',
         'message': 'Message',
         'severity': 'Severity',

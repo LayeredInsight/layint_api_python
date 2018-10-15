@@ -5,8 +5,8 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **str** | 12 character internal hexadecimal identifier for this Container | [optional] 
 **name** | **str** | Containers name, or empty string | [optional] 
-**user_id** | **int** | User ID of owner of the container | [optional] 
-**group_id** | **int** | Group ID of owner of the container | [optional] 
+**user_id** | **str** | User ID of owner of the container | [optional] 
+**group_id** | **str** | Group ID of owner of the container | [optional] 
 **date_created** | **str** | Timestamp for when object was created | [optional] 
 **date_updated** | **str** | Timestamp for when object was last updated | [optional] 
 **image_id** | **str** | 12 character hexadecimal internal identifier for container image this container is running | [optional] 

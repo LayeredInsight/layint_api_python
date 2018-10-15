@@ -4,7 +4,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **name** | **str** | Name of Configuration | [optional] 
-**logging** | **bool** |  | [optional] [default to False]
+**log_mode** | **int** |  | [optional] 
 **sniffing** | **bool** |  | [optional] [default to False]
 **default** | **bool** |  | [optional] [default to False]
 **mq** | **str** | Message Queue URL for logs | [optional] 

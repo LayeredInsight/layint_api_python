@@ -39,6 +39,7 @@ class Image(object):
         'image_id': 'str',
         'sha_sum': 'str',
         'size': 'int',
+        'submitter': 'list[str]',
         'registry': 'str',
         'push_registry': 'str',
         'push_name': 'str',
@@ -48,7 +49,8 @@ class Image(object):
         'scan_status': 'str',
         'status_msg': 'str',
         'date_created': 'str',
-        'date_updated': 'str'
+        'date_updated': 'str',
+        'tags': 'list[Tag]'
     }
 
     attribute_map = {
@@ -57,9 +59,10 @@ class Image(object):
         'description': 'Description',
         'user_id': 'UserID',
         'group_id': 'GroupID',
-        'image_id': 'ImageId',
+        'image_id': 'ImageID',
         'sha_sum': 'SHASum',
         'size': 'Size',
+        'submitter': 'Submitter',
         'registry': 'Registry',
         'push_registry': 'PushRegistry',
         'push_name': 'PushName',
@@ -69,10 +72,11 @@ class Image(object):
         'scan_status': 'ScanStatus',
         'status_msg': 'StatusMsg',
         'date_created': 'DateCreated',
-        'date_updated': 'DateUpdated'
+        'date_updated': 'DateUpdated',
+        'tags': 'Tags'
     }
 
-    def __init__(self, id=None, name=None, description=None, user_id=None, group_id=None, image_id=None, sha_sum=None, size=None, registry=None, push_registry=None, push_name=None, config_id=None, policy_id=None, status=None, scan_status=None, status_msg=None, date_created=None, date_updated=None):
+    def __init__(self, id=None, name=None, description=None, user_id=None, group_id=None, image_id=None, sha_sum=None, size=None, submitter=None, registry=None, push_registry=None, push_name=None, config_id=None, policy_id=None, status=None, scan_status=None, status_msg=None, date_created=None, date_updated=None, tags=None):
         """
         Image - a model defined in Swagger
         """
@@ -85,6 +89,7 @@ class Image(object):
         self._image_id = None
         self._sha_sum = None
         self._size = None
+        self._submitter = None
         self._registry = None
         self._push_registry = None
         self._push_name = None
@@ -95,6 +100,7 @@ class Image(object):
         self._status_msg = None
         self._date_created = None
         self._date_updated = None
+        self._tags = None
 
         if id is not None:
           self.id = id
@@ -112,6 +118,8 @@ class Image(object):
           self.sha_sum = sha_sum
         if size is not None:
           self.size = size
+        if submitter is not None:
+          self.submitter = submitter
         if registry is not None:
           self.registry = registry
         if push_registry is not None:
@@ -132,6 +140,8 @@ class Image(object):
           self.date_created = date_created
         if date_updated is not None:
           self.date_updated = date_updated
+        if tags is not None:
+          self.tags = tags
 
     @property
     def id(self):
@@ -316,6 +326,29 @@ class Image(object):
         """
 
         self._size = size
+
+    @property
+    def submitter(self):
+        """
+        Gets the submitter of this Image.
+        a list of email ids to send scan records to
+
+        :return: The submitter of this Image.
+        :rtype: list[str]
+        """
+        return self._submitter
+
+    @submitter.setter
+    def submitter(self, submitter):
+        """
+        Sets the submitter of this Image.
+        a list of email ids to send scan records to
+
+        :param submitter: The submitter of this Image.
+        :type: list[str]
+        """
+
+        self._submitter = submitter
 
     @property
     def registry(self):
@@ -552,6 +585,27 @@ class Image(object):
         """
 
         self._date_updated = date_updated
+
+    @property
+    def tags(self):
+        """
+        Gets the tags of this Image.
+
+        :return: The tags of this Image.
+        :rtype: list[Tag]
+        """
+        return self._tags
+
+    @tags.setter
+    def tags(self, tags):
+        """
+        Sets the tags of this Image.
+
+        :param tags: The tags of this Image.
+        :type: list[Tag]
+        """
+
+        self._tags = tags
 
     def to_dict(self):
         """

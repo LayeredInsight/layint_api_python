@@ -239,6 +239,106 @@ class PolicyApi(object):
                                         _request_timeout=params.get('_request_timeout'),
                                         collection_formats=collection_formats)
 
+    def generate_seccomp_for_policy(self, policy_id, **kwargs):
+        """
+        Get a Seccomp policy derivied from a LI policy
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please define a `callback` function
+        to be invoked when receiving the response.
+        >>> def callback_function(response):
+        >>>     pprint(response)
+        >>>
+        >>> thread = api.generate_seccomp_for_policy(policy_id, callback=callback_function)
+
+        :param callback function: The callback function
+            for asynchronous request. (optional)
+        :param str policy_id: hexadecimal ID of policy (required)
+        :param bool li_agent: If true, the policy will include whitelisted syscalls for the LI agent.
+        :return: None
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+        kwargs['_return_http_data_only'] = True
+        if kwargs.get('callback'):
+            return self.generate_seccomp_for_policy_with_http_info(policy_id, **kwargs)
+        else:
+            (data) = self.generate_seccomp_for_policy_with_http_info(policy_id, **kwargs)
+            return data
+
+    def generate_seccomp_for_policy_with_http_info(self, policy_id, **kwargs):
+        """
+        Get a Seccomp policy derivied from a LI policy
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please define a `callback` function
+        to be invoked when receiving the response.
+        >>> def callback_function(response):
+        >>>     pprint(response)
+        >>>
+        >>> thread = api.generate_seccomp_for_policy_with_http_info(policy_id, callback=callback_function)
+
+        :param callback function: The callback function
+            for asynchronous request. (optional)
+        :param str policy_id: hexadecimal ID of policy (required)
+        :param bool li_agent: If true, the policy will include whitelisted syscalls for the LI agent.
+        :return: None
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+
+        all_params = ['policy_id', 'li_agent']
+        all_params.append('callback')
+        all_params.append('_return_http_data_only')
+        all_params.append('_preload_content')
+        all_params.append('_request_timeout')
+
+        params = locals()
+        for key, val in iteritems(params['kwargs']):
+            if key not in all_params:
+                raise TypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method generate_seccomp_for_policy" % key
+                )
+            params[key] = val
+        del params['kwargs']
+        # verify the required parameter 'policy_id' is set
+        if ('policy_id' not in params) or (params['policy_id'] is None):
+            raise ValueError("Missing the required parameter `policy_id` when calling `generate_seccomp_for_policy`")
+
+
+        collection_formats = {}
+
+        path_params = {}
+        if 'policy_id' in params:
+            path_params['policyID'] = params['policy_id']
+
+        query_params = []
+        if 'li_agent' in params:
+            query_params.append(('liAgent', params['li_agent']))
+
+        header_params = {}
+
+        form_params = []
+        local_var_files = {}
+
+        body_params = None
+        # Authentication setting
+        auth_settings = ['ApiKey']
+
+        return self.api_client.call_api('/Policies/{policyID}/Seccomp', 'GET',
+                                        path_params,
+                                        query_params,
+                                        header_params,
+                                        body=body_params,
+                                        post_params=form_params,
+                                        files=local_var_files,
+                                        response_type=None,
+                                        auth_settings=auth_settings,
+                                        callback=params.get('callback'),
+                                        _return_http_data_only=params.get('_return_http_data_only'),
+                                        _preload_content=params.get('_preload_content', True),
+                                        _request_timeout=params.get('_request_timeout'),
+                                        collection_formats=collection_formats)
+
     def get_containers_running_policy(self, policy_id, **kwargs):
         """
         Get containers running a specific policy

@@ -31,20 +31,22 @@ class ScanPolicy(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'sid': 'str',
+        'id': 'str',
         'user_id': 'str',
+        'group_id': 'str',
         'uri': 'str',
         'date_created': 'str',
         'date_updated': 'str',
         'name': 'str',
         'rules_id': 'list[str]',
-        'rules': 'list[PolicyRule]'
+        'rules': 'list[ScanPolicyRule]'
     }
 
     attribute_map = {
-        'sid': 'Sid',
+        'id': 'ID',
         'user_id': 'UserID',
-        'uri': 'Uri',
+        'group_id': 'GroupID',
+        'uri': 'URI',
         'date_created': 'DateCreated',
         'date_updated': 'DateUpdated',
         'name': 'Name',
@@ -52,13 +54,14 @@ class ScanPolicy(object):
         'rules': 'Rules'
     }
 
-    def __init__(self, sid=None, user_id=None, uri=None, date_created=None, date_updated=None, name=None, rules_id=None, rules=None):
+    def __init__(self, id=None, user_id=None, group_id=None, uri=None, date_created=None, date_updated=None, name=None, rules_id=None, rules=None):
         """
         ScanPolicy - a model defined in Swagger
         """
 
-        self._sid = None
+        self._id = None
         self._user_id = None
+        self._group_id = None
         self._uri = None
         self._date_created = None
         self._date_updated = None
@@ -66,10 +69,12 @@ class ScanPolicy(object):
         self._rules_id = None
         self._rules = None
 
-        if sid is not None:
-          self.sid = sid
+        if id is not None:
+          self.id = id
         if user_id is not None:
           self.user_id = user_id
+        if group_id is not None:
+          self.group_id = group_id
         if uri is not None:
           self.uri = uri
         if date_created is not None:
@@ -84,27 +89,27 @@ class ScanPolicy(object):
           self.rules = rules
 
     @property
-    def sid(self):
+    def id(self):
         """
-        Gets the sid of this ScanPolicy.
+        Gets the id of this ScanPolicy.
         ID for this rule
 
-        :return: The sid of this ScanPolicy.
+        :return: The id of this ScanPolicy.
         :rtype: str
         """
-        return self._sid
+        return self._id
 
-    @sid.setter
-    def sid(self, sid):
+    @id.setter
+    def id(self, id):
         """
-        Sets the sid of this ScanPolicy.
+        Sets the id of this ScanPolicy.
         ID for this rule
 
-        :param sid: The sid of this ScanPolicy.
+        :param id: The id of this ScanPolicy.
         :type: str
         """
 
-        self._sid = sid
+        self._id = id
 
     @property
     def user_id(self):
@@ -128,6 +133,29 @@ class ScanPolicy(object):
         """
 
         self._user_id = user_id
+
+    @property
+    def group_id(self):
+        """
+        Gets the group_id of this ScanPolicy.
+        Group ID of owner of this rule
+
+        :return: The group_id of this ScanPolicy.
+        :rtype: str
+        """
+        return self._group_id
+
+    @group_id.setter
+    def group_id(self, group_id):
+        """
+        Sets the group_id of this ScanPolicy.
+        Group ID of owner of this rule
+
+        :param group_id: The group_id of this ScanPolicy.
+        :type: str
+        """
+
+        self._group_id = group_id
 
     @property
     def uri(self):
@@ -248,7 +276,7 @@ class ScanPolicy(object):
         Gets the rules of this ScanPolicy.
 
         :return: The rules of this ScanPolicy.
-        :rtype: list[PolicyRule]
+        :rtype: list[ScanPolicyRule]
         """
         return self._rules
 
@@ -258,7 +286,7 @@ class ScanPolicy(object):
         Sets the rules of this ScanPolicy.
 
         :param rules: The rules of this ScanPolicy.
-        :type: list[PolicyRule]
+        :type: list[ScanPolicyRule]
         """
 
         self._rules = rules

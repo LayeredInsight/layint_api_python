@@ -32,7 +32,7 @@ class UpdateConfig(object):
     """
     swagger_types = {
         'name': 'str',
-        'logging': 'bool',
+        'log_mode': 'int',
         'sniffing': 'bool',
         'default': 'bool',
         'mq': 'str'
@@ -40,27 +40,27 @@ class UpdateConfig(object):
 
     attribute_map = {
         'name': 'Name',
-        'logging': 'Logging',
+        'log_mode': 'LogMode',
         'sniffing': 'Sniffing',
         'default': 'Default',
         'mq': 'MQ'
     }
 
-    def __init__(self, name=None, logging=False, sniffing=False, default=False, mq=None):
+    def __init__(self, name=None, log_mode=None, sniffing=False, default=False, mq=None):
         """
         UpdateConfig - a model defined in Swagger
         """
 
         self._name = None
-        self._logging = None
+        self._log_mode = None
         self._sniffing = None
         self._default = None
         self._mq = None
 
         if name is not None:
           self.name = name
-        if logging is not None:
-          self.logging = logging
+        if log_mode is not None:
+          self.log_mode = log_mode
         if sniffing is not None:
           self.sniffing = sniffing
         if default is not None:
@@ -92,25 +92,25 @@ class UpdateConfig(object):
         self._name = name
 
     @property
-    def logging(self):
+    def log_mode(self):
         """
-        Gets the logging of this UpdateConfig.
+        Gets the log_mode of this UpdateConfig.
 
-        :return: The logging of this UpdateConfig.
-        :rtype: bool
+        :return: The log_mode of this UpdateConfig.
+        :rtype: int
         """
-        return self._logging
+        return self._log_mode
 
-    @logging.setter
-    def logging(self, logging):
+    @log_mode.setter
+    def log_mode(self, log_mode):
         """
-        Sets the logging of this UpdateConfig.
+        Sets the log_mode of this UpdateConfig.
 
-        :param logging: The logging of this UpdateConfig.
-        :type: bool
+        :param log_mode: The log_mode of this UpdateConfig.
+        :type: int
         """
 
-        self._logging = logging
+        self._log_mode = log_mode
 
     @property
     def sniffing(self):

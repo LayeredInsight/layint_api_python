@@ -16,6 +16,8 @@ from __future__ import absolute_import
 # import models into sdk package
 from .models.api_response_user import APIResponseUser
 from .models.alert_events import AlertEvents
+from .models.alerts import Alerts
+from .models.alerts_messages import AlertsMessages
 from .models.bad_request import BadRequest
 from .models.behavioral_status import BehavioralStatus
 from .models.clair_data import ClairData
@@ -58,6 +60,7 @@ from .models.image import Image
 from .models.image_log import ImageLog
 from .models.image_logs import ImageLogs
 from .models.image_ref import ImageRef
+from .models.image_update_request import ImageUpdateRequest
 from .models.images import Images
 from .models.inline_response_200 import InlineResponse200
 from .models.inline_response_200_1 import InlineResponse2001
@@ -74,6 +77,8 @@ from .models.license_runtime import LicenseRuntime
 from .models.license_scan import LicenseScan
 from .models.limit import Limit
 from .models.login import Login
+from .models.network_map import NetworkMap
+from .models.network_map_inner import NetworkMapInner
 from .models.notification import Notification
 from .models.notifications import Notifications
 from .models.package_search_data import PackageSearchData
@@ -125,6 +130,7 @@ from .models.vulnerable_image import VulnerableImage
 from .models.vulnerable_image_data import VulnerableImageData
 
 # import apis into sdk package
+from .apis.alerts_api import AlertsApi
 from .apis.analytics_api import AnalyticsApi
 from .apis.authentication_api import AuthenticationApi
 from .apis.clair_api import ClairApi
@@ -137,6 +143,7 @@ from .apis.images_api import ImagesApi
 from .apis.license_api import LicenseApi
 from .apis.log_api import LogApi
 from .apis.monitor_api import MonitorApi
+from .apis.network_api import NetworkApi
 from .apis.notification_api import NotificationApi
 from .apis.policy_api import PolicyApi
 from .apis.registry_api import RegistryApi

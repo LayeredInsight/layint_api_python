@@ -12,6 +12,7 @@ Method | HTTP request | Description
 [**five_most_divergent_containers**](ContainerApi.md#five_most_divergent_containers) | **GET** /ContainersFiveMostDivergent | 
 [**function_metrics**](ContainerApi.md#function_metrics) | **GET** /Containers/{containerID}/FunctionMetrics | Get occurance of system calls in time
 [**functions**](ContainerApi.md#functions) | **GET** /Containers/{containerID}/Functions | Get a list of system calls a container has made
+[**get_agent_config**](ContainerApi.md#get_agent_config) | **GET** /Containers/{containerID}/AgentConfig | Get the specified container configuration for the LI agent. The configuration consists of agent settings and policy rules.
 [**get_container_dossier**](ContainerApi.md#get_container_dossier) | **GET** /Containers/{containerID}/Dossier | Gets dossier for container
 [**get_container_logs**](ContainerApi.md#get_container_logs) | **GET** /Containers/{containerID}/GetContainerLogs | Gets behavioral logs for container
 [**get_containers**](ContainerApi.md#get_containers) | **GET** /Containers | Get containers
@@ -22,6 +23,7 @@ Method | HTTP request | Description
 [**number_of_running_containers**](ContainerApi.md#number_of_running_containers) | **GET** /ContainersRunning | Get number of containers currently running
 [**passivate_container**](ContainerApi.md#passivate_container) | **POST** /Containers/{containerID}/Passivate | Toggle the container behavior between passive and active
 [**post_behavioral_logging**](ContainerApi.md#post_behavioral_logging) | **POST** /Containers/{containerID}/BehavioralLogging | Toggle behavioral logging on/off
+[**seccomp**](ContainerApi.md#seccomp) | **GET** /Containers/{containerID}/Seccomp | Get a Seccomp profile based on the list of system calls a container has made.
 [**show_container_details**](ContainerApi.md#show_container_details) | **GET** /Containers/{containerID} | Get a container
 [**singel_syscall**](ContainerApi.md#singel_syscall) | **GET** /Containers/{containerID}/SingleSyscall | Get amount of calls to a system call number in the last 5 seconds
 [**toggle_container_sniffer**](ContainerApi.md#toggle_container_sniffer) | **POST** /Containers/{containerID}/ToggleSniffer | Toggles network sniffer
@@ -463,6 +465,65 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **get_agent_config**
+> str get_agent_config(container_id, log_mode=log_mode, arch=arch, raw=raw)
+
+Get the specified container configuration for the LI agent. The configuration consists of agent settings and policy rules.
+
+Provides the compiled LI agent configuration for the specified container.
+
+### Example 
+```python
+from __future__ import print_function
+import time
+import layint_api
+from layint_api.rest import ApiException
+from pprint import pprint
+
+# Configure API key authorization: ApiKey
+layint_api.configuration.api_key['Authorization'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# layint_api.configuration.api_key_prefix['Authorization'] = 'Bearer'
+
+# create an instance of the API class
+api_instance = layint_api.ContainerApi()
+container_id = 'container_id_example' # str | hexadecimal ID of container to get agent configuration
+log_mode = 3 # int | integer in decimal representation containing LogMode bit flags to set in the  generated agent configuration.  | Log Mode        | Value | Value Hexadecimal | |-----------------|-------|-------------------| | None            | 0     | 0x0| | PolicyAlert     | 1     | 0x1| | PolicyDeny      | 2     | 0x2| | PolicyAlertDeny | 3     | 0x3 (PolicyAlert \\| PolicyDeny)| | PolicyAllow     | 4     | 0x4| | PolicyAll       | 7     | 0x7 (PolicyAlert \\| PolicyDeny \\| PolicyAllow)| | Behavior        | 8     | 0x8   | | All             | 15    | 0xf (PolicyAll \\| Behavior)|  (optional) (default to 3)
+arch = 'amd64' # str | architecture to use for the generated agent configuration policy rules (optional) (default to amd64)
+raw = false # bool | response format option for raw format (optional) (default to false)
+
+try: 
+    # Get the specified container configuration for the LI agent. The configuration consists of agent settings and policy rules.
+    api_response = api_instance.get_agent_config(container_id, log_mode=log_mode, arch=arch, raw=raw)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling ContainerApi->get_agent_config: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **container_id** | **str**| hexadecimal ID of container to get agent configuration | 
+ **log_mode** | **int**| integer in decimal representation containing LogMode bit flags to set in the  generated agent configuration.  | Log Mode        | Value | Value Hexadecimal | |-----------------|-------|-------------------| | None            | 0     | 0x0| | PolicyAlert     | 1     | 0x1| | PolicyDeny      | 2     | 0x2| | PolicyAlertDeny | 3     | 0x3 (PolicyAlert \\| PolicyDeny)| | PolicyAllow     | 4     | 0x4| | PolicyAll       | 7     | 0x7 (PolicyAlert \\| PolicyDeny \\| PolicyAllow)| | Behavior        | 8     | 0x8   | | All             | 15    | 0xf (PolicyAll \\| Behavior)|  | [optional] [default to 3]
+ **arch** | **str**| architecture to use for the generated agent configuration policy rules | [optional] [default to amd64]
+ **raw** | **bool**| response format option for raw format | [optional] [default to false]
+
+### Return type
+
+**str**
+
+### Authorization
+
+[ApiKey](../README.md#ApiKey)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: Not defined
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **get_container_dossier**
 > Dossier get_container_dossier(container_id)
 
@@ -727,7 +788,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **level_syscall_category_metrics**
-> LevelSyscallCategoryMetrics level_syscall_category_metrics(container_id, starting_time)
+> LevelSyscallCategoryMetrics level_syscall_category_metrics(container_id, starting_time, ending_time=ending_time)
 
 Get histograph information for system calls divided into category groups
 
@@ -748,10 +809,11 @@ layint_api.configuration.api_key['Authorization'] = 'YOUR_API_KEY'
 api_instance = layint_api.ContainerApi()
 container_id = 'container_id_example' # str | hexadecimal ID of container to get metrics from
 starting_time = 'starting_time_example' # str | Time from when histograph should start
+ending_time = 'ending_time_example' # str | Time from when histograph should end (optional)
 
 try: 
     # Get histograph information for system calls divided into category groups
-    api_response = api_instance.level_syscall_category_metrics(container_id, starting_time)
+    api_response = api_instance.level_syscall_category_metrics(container_id, starting_time, ending_time=ending_time)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling ContainerApi->level_syscall_category_metrics: %s\n" % e)
@@ -763,6 +825,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **container_id** | **str**| hexadecimal ID of container to get metrics from | 
  **starting_time** | **str**| Time from when histograph should start | 
+ **ending_time** | **str**| Time from when histograph should end | [optional] 
 
 ### Return type
 
@@ -975,6 +1038,62 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**BehavioralStatus**](BehavioralStatus.md)
+
+### Authorization
+
+[ApiKey](../README.md#ApiKey)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: Not defined
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **seccomp**
+> seccomp(container_id, starting_time=starting_time, system_call=system_call, language=language)
+
+Get a Seccomp profile based on the list of system calls a container has made.
+
+### Example 
+```python
+from __future__ import print_function
+import time
+import layint_api
+from layint_api.rest import ApiException
+from pprint import pprint
+
+# Configure API key authorization: ApiKey
+layint_api.configuration.api_key['Authorization'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# layint_api.configuration.api_key_prefix['Authorization'] = 'Bearer'
+
+# create an instance of the API class
+api_instance = layint_api.ContainerApi()
+container_id = 'container_id_example' # str | hexadecimal ID of container to get system call from
+starting_time = 'starting_time_example' # str | Date from when to get data (optional)
+system_call = 'system_call_example' # str | Get a systemcall by number (optional)
+language = 'language_example' # str | Get calls for a given language (optional)
+
+try: 
+    # Get a Seccomp profile based on the list of system calls a container has made.
+    api_instance.seccomp(container_id, starting_time=starting_time, system_call=system_call, language=language)
+except ApiException as e:
+    print("Exception when calling ContainerApi->seccomp: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **container_id** | **str**| hexadecimal ID of container to get system call from | 
+ **starting_time** | **str**| Date from when to get data | [optional] 
+ **system_call** | **str**| Get a systemcall by number | [optional] 
+ **language** | **str**| Get calls for a given language | [optional] 
+
+### Return type
+
+void (empty response body)
 
 ### Authorization
 

@@ -15,6 +15,7 @@ Name | Type | Description | Notes
 **suspend** | **bool** | Allows suspension of policy enforcement | [optional] [default to False]
 **limits** | [**Limit**](Limit.md) |  | [optional] 
 **rules** | [**list[PolicyRule]**](PolicyRule.md) | Policy rules defining control for this policy | [optional] 
+**ignored_syscalls** | **list[str]** | System calls that this Policy must ignore.  Supersedes any rules. | [optional] 
 **date_created** | **str** | Timestamp for when object was created | [optional] 
 **date_updated** | **str** | Timestamp for when object was last updated | [optional] 
 

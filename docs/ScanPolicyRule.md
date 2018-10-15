@@ -3,8 +3,9 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**sid** | **str** | ID for this rule | [optional] 
+**id** | **str** | ID for this rule | [optional] 
 **user_id** | **str** | ID of owner of this rule | [optional] 
+**group_id** | **str** | Group ID of owner of this rule | [optional] 
 **uri** | **str** |  | [optional] 
 **date_created** | **str** | Timestamp representing date scan was run | [optional] 
 **date_updated** | **str** | Timestamp representing date this record was updated | [optional] 

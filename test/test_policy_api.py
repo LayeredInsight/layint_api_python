@@ -47,6 +47,14 @@ class TestPolicyApi(unittest.TestCase):
         """
         pass
 
+    def test_generate_seccomp_for_policy(self):
+        """
+        Test case for generate_seccomp_for_policy
+
+        Get a Seccomp policy derivied from a LI policy
+        """
+        pass
+
     def test_get_containers_running_policy(self):
         """
         Test case for get_containers_running_policy

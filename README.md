@@ -56,15 +56,14 @@ layint_api.configuration.api_key['Authorization'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # layint_api.configuration.api_key_prefix['Authorization'] = 'Bearer'
 # create an instance of the API class
-api_instance = layint_api.AnalyticsApi()
-cve_search_field = layint_api.CveSearchField() # CveSearchField | 
+api_instance = layint_api.AlertsApi()
+id = 'id_example' # str | Accepts: alert ID or \"all\"
 
 try:
-    # Searches image scan results for specified CVE ID
-    api_response = api_instance.cve_search(cve_search_field)
-    pprint(api_response)
+    # Delete alerts
+    api_instance.alerts_delete(id)
 except ApiException as e:
-    print("Exception when calling AnalyticsApi->cve_search: %s\n" % e)
+    print("Exception when calling AlertsApi->alerts_delete: %s\n" % e)
 
 ```
 
@@ -74,6 +73,8 @@ All URIs are relative to *http://api-stage.layeredinsight.net/v0.01*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
+*AlertsApi* | [**alerts_delete**](docs/AlertsApi.md#alerts_delete) | **DELETE** /Alerts | Delete alerts
+*AlertsApi* | [**alerts_get**](docs/AlertsApi.md#alerts_get) | **GET** /Alerts | Get alerts
 *AnalyticsApi* | [**cve_search**](docs/AnalyticsApi.md#cve_search) | **POST** /Scan/CveSearch | Searches image scan results for specified CVE ID
 *AnalyticsApi* | [**get_stats**](docs/AnalyticsApi.md#get_stats) | **GET** /Scan/Stats | Gets vulnerability statistics for user&#39;s images
 *AnalyticsApi* | [**package_search**](docs/AnalyticsApi.md#package_search) | **POST** /Scan/PackageSearch | Searches for images with a specified software package
@@ -108,6 +109,7 @@ Class | Method | HTTP request | Description
 *ContainerApi* | [**five_most_divergent_containers**](docs/ContainerApi.md#five_most_divergent_containers) | **GET** /ContainersFiveMostDivergent | 
 *ContainerApi* | [**function_metrics**](docs/ContainerApi.md#function_metrics) | **GET** /Containers/{containerID}/FunctionMetrics | Get occurance of system calls in time
 *ContainerApi* | [**functions**](docs/ContainerApi.md#functions) | **GET** /Containers/{containerID}/Functions | Get a list of system calls a container has made
+*ContainerApi* | [**get_agent_config**](docs/ContainerApi.md#get_agent_config) | **GET** /Containers/{containerID}/AgentConfig | Get the specified container configuration for the LI agent. The configuration consists of agent settings and policy rules.
 *ContainerApi* | [**get_container_dossier**](docs/ContainerApi.md#get_container_dossier) | **GET** /Containers/{containerID}/Dossier | Gets dossier for container
 *ContainerApi* | [**get_container_logs**](docs/ContainerApi.md#get_container_logs) | **GET** /Containers/{containerID}/GetContainerLogs | Gets behavioral logs for container
 *ContainerApi* | [**get_containers**](docs/ContainerApi.md#get_containers) | **GET** /Containers | Get containers
@@ -118,6 +120,7 @@ Class | Method | HTTP request | Description
 *ContainerApi* | [**number_of_running_containers**](docs/ContainerApi.md#number_of_running_containers) | **GET** /ContainersRunning | Get number of containers currently running
 *ContainerApi* | [**passivate_container**](docs/ContainerApi.md#passivate_container) | **POST** /Containers/{containerID}/Passivate | Toggle the container behavior between passive and active
 *ContainerApi* | [**post_behavioral_logging**](docs/ContainerApi.md#post_behavioral_logging) | **POST** /Containers/{containerID}/BehavioralLogging | Toggle behavioral logging on/off
+*ContainerApi* | [**seccomp**](docs/ContainerApi.md#seccomp) | **GET** /Containers/{containerID}/Seccomp | Get a Seccomp profile based on the list of system calls a container has made.
 *ContainerApi* | [**show_container_details**](docs/ContainerApi.md#show_container_details) | **GET** /Containers/{containerID} | Get a container
 *ContainerApi* | [**singel_syscall**](docs/ContainerApi.md#singel_syscall) | **GET** /Containers/{containerID}/SingleSyscall | Get amount of calls to a system call number in the last 5 seconds
 *ContainerApi* | [**toggle_container_sniffer**](docs/ContainerApi.md#toggle_container_sniffer) | **POST** /Containers/{containerID}/ToggleSniffer | Toggles network sniffer
@@ -130,8 +133,10 @@ Class | Method | HTTP request | Description
 *ImageApi* | [**assign_configuration_to_image**](docs/ImageApi.md#assign_configuration_to_image) | **POST** /Images/{imageID}/Configs/{configID} | Assign configuration to image
 *ImageApi* | [**assign_policy_to_image**](docs/ImageApi.md#assign_policy_to_image) | **POST** /Images/{imageID}/Policies/{policyID} | Assign security policy to image
 *ImageApi* | [**delete_image**](docs/ImageApi.md#delete_image) | **DELETE** /Images/{imageID} | Delete specified image
+*ImageApi* | [**get_agent_config**](docs/ImageApi.md#get_agent_config) | **GET** /Images/{imageID}/AgentConfig | Get the specified image configuration for the LI agent. The configuration consists of agent settings and policy rules.
 *ImageApi* | [**get_image**](docs/ImageApi.md#get_image) | **GET** /Images/{imageID} | Get specified container image
 *ImageApi* | [**get_images**](docs/ImageApi.md#get_images) | **GET** /Images | Get defined container images
+*ImageApi* | [**image_id_level_syscall_category_metrics**](docs/ImageApi.md#image_id_level_syscall_category_metrics) | **GET** /Images/{imageID}/LevelSyscallCategoryMetrics | Get histograph information for system calls divided into category groups across all the containers which are using the image
 *ImageApi* | [**images_search_post**](docs/ImageApi.md#images_search_post) | **POST** /ImagesSearch | 
 *ImageApi* | [**instrument_image**](docs/ImageApi.md#instrument_image) | **POST** /Images/{imageID}/Instrument | Request instrumentation of specified container image
 *ImageApi* | [**number_of_instrumented_images**](docs/ImageApi.md#number_of_instrumented_images) | **GET** /ImagesInstrumented | Returns number of instrumented images
@@ -152,10 +157,12 @@ Class | Method | HTTP request | Description
 *LogApi* | [**show_logs**](docs/LogApi.md#show_logs) | **GET** /Logs | Get all logs
 *LogApi* | [**show_logs_for_container**](docs/LogApi.md#show_logs_for_container) | **GET** /Logs/{ContainerId} | Get container logs
 *MonitorApi* | [**monitor**](docs/MonitorApi.md#monitor) | **GET** /Monitor/{Minutes} | Get policy hits
+*NetworkApi* | [**network_map**](docs/NetworkApi.md#network_map) | **GET** /NetworkMap | Get network topology between running containers
 *NotificationApi* | [**list_all_notfications**](docs/NotificationApi.md#list_all_notfications) | **GET** /Notifications | Get all notifications
 *NotificationApi* | [**show_notification_details**](docs/NotificationApi.md#show_notification_details) | **GET** /Notifications/{NotificationId} | Get notification
 *PolicyApi* | [**add_policy**](docs/PolicyApi.md#add_policy) | **POST** /Policies | Create new security policy
 *PolicyApi* | [**delete_policy**](docs/PolicyApi.md#delete_policy) | **DELETE** /Policies/{policyID} | Delete policy
+*PolicyApi* | [**generate_seccomp_for_policy**](docs/PolicyApi.md#generate_seccomp_for_policy) | **GET** /Policies/{policyID}/Seccomp | Get a Seccomp policy derivied from a LI policy
 *PolicyApi* | [**get_containers_running_policy**](docs/PolicyApi.md#get_containers_running_policy) | **GET** /Policies/{policyID}/Containers | Get containers running a specific policy
 *PolicyApi* | [**get_policies**](docs/PolicyApi.md#get_policies) | **GET** /Policies | Get all policies
 *PolicyApi* | [**get_policy**](docs/PolicyApi.md#get_policy) | **GET** /Policies/{policyID} | Get specific policy
@@ -196,6 +203,8 @@ Class | Method | HTTP request | Description
 
  - [APIResponseUser](docs/APIResponseUser.md)
  - [AlertEvents](docs/AlertEvents.md)
+ - [Alerts](docs/Alerts.md)
+ - [AlertsMessages](docs/AlertsMessages.md)
  - [BadRequest](docs/BadRequest.md)
  - [BehavioralStatus](docs/BehavioralStatus.md)
  - [ClairData](docs/ClairData.md)
@@ -238,6 +247,7 @@ Class | Method | HTTP request | Description
  - [ImageLog](docs/ImageLog.md)
  - [ImageLogs](docs/ImageLogs.md)
  - [ImageRef](docs/ImageRef.md)
+ - [ImageUpdateRequest](docs/ImageUpdateRequest.md)
  - [Images](docs/Images.md)
  - [InlineResponse200](docs/InlineResponse200.md)
  - [InlineResponse2001](docs/InlineResponse2001.md)
@@ -254,6 +264,8 @@ Class | Method | HTTP request | Description
  - [LicenseScan](docs/LicenseScan.md)
  - [Limit](docs/Limit.md)
  - [Login](docs/Login.md)
+ - [NetworkMap](docs/NetworkMap.md)
+ - [NetworkMapInner](docs/NetworkMapInner.md)
  - [Notification](docs/Notification.md)
  - [Notifications](docs/Notifications.md)
  - [PackageSearchData](docs/PackageSearchData.md)

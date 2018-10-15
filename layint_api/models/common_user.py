@@ -45,7 +45,7 @@ class CommonUser(object):
     }
 
     attribute_map = {
-        'id': 'Id',
+        'id': 'ID',
         'username': 'Username',
         'password': 'Password',
         'first_name': 'FirstName',

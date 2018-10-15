@@ -63,6 +63,14 @@ class TestImageApi(unittest.TestCase):
         """
         pass
 
+    def test_get_agent_config(self):
+        """
+        Test case for get_agent_config
+
+        Get the specified image configuration for the LI agent. The configuration consists of agent settings and policy rules.
+        """
+        pass
+
     def test_get_image(self):
         """
         Test case for get_image
@@ -76,6 +84,14 @@ class TestImageApi(unittest.TestCase):
         Test case for get_images
 
         Get defined container images
+        """
+        pass
+
+    def test_image_id_level_syscall_category_metrics(self):
+        """
+        Test case for image_id_level_syscall_category_metrics
+
+        Get histograph information for system calls divided into category groups across all the containers which are using the image
         """
         pass
 

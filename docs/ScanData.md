@@ -3,8 +3,8 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**sid** | **str** | Internal ID of this scan | [optional] 
-**parent_sid** | **str** | Internal ID of image that was scanned | [optional] 
+**id** | **str** | Internal ID of this scan | [optional] 
+**parent_id** | **str** | Internal ID of image that was scanned | [optional] 
 **user_id** | **str** | ID of image owner | [optional] 
 **uri** | **str** | a | [optional] 
 **image_id** | **str** | Docker image ID | [optional] 

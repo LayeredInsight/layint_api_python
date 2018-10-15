@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 **image_id** | **str** | Docker image ID | [optional] 
 **sha_sum** | **str** | SHA256 hash value for this image | [optional] 
 **size** | **int** | Size of the image, in bytes | [optional] 
+**submitter** | **list[str]** | a list of email ids to send scan records to | [optional] 
 **registry** | **str** | 12 character hexadecimal internal identifier to layered insight record defining the registry this image is stored in | [optional] 
 **push_registry** | **str** | 12 character hexadecimal internal identifier to layered insight record defining the push registry for a layered version of this image | [optional] 
 **push_name** | **str** | Layered Image name for push registry (-layered tag will still be appended) | [optional] 
@@ -21,6 +22,7 @@ Name | Type | Description | Notes
 **status_msg** | **str** | Stores details about status of image, if any | [optional] 
 **date_created** | **str** | Timestamp for when object was created | [optional] 
 **date_updated** | **str** | Timestamp for when object was last updated | [optional] 
+**tags** | [**list[Tag]**](Tag.md) |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -15,7 +15,7 @@ import sys
 from setuptools import setup, find_packages
 
 NAME = "layint-api"
-VERSION = "0.10"
+VERSION = "0.10a1"
 # To install the library, run the following
 #
 # python setup.py install
